@@ -10,7 +10,7 @@ int main(){
         bool er = true;
         deque<int> deq;
         string str,Sttarr,temp;
-        cin>>str>>N>>Sttarr;s
+        cin>>str>>N>>Sttarr;
         if(N!=0){
             for(int x=0;x<Sttarr.length();++x){
                 if(Sttarr[x] == '[' ) continue;
