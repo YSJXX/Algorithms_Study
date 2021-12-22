@@ -1,33 +1,18 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 int main(){
-    int N = 0;
-    string str;
-    cin >> N;
-    vector<string> v;
-    for(int i=0;i<N;i++){
-        cin >> str;
-        v.push_back(str);
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+    int N;cin>>N;
+    pair<int,string> p[N];
+    for(int i=0;i<N;++i) {
+        string str;
+        cin>>str;
+        p[i].first = str.length();
+        p[i].second = str;
     }
-    sort(v.begin(), v.end());
-    v.erase(unique(v.begin(),v.end()),v.end());
-    for(int i=0;i<N;i++) cout<<v[i]<<'\n';
+    sort(p,p+N);
+    auto it = unique(p,p+N);
+    for(auto iter=p;iter<it;++iter) cout<<iter->second<<'\n';
+    return 0;
 }
-
-// 13
-// but
-// i
-// wont
-// hesitate
-// no
-// more
-// no
-// more
-// it
-// cannot
-// wait
-// im
-// yours
