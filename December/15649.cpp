@@ -11,7 +11,6 @@ void dfs(int dep){
         cout<<'\n';
         return;
     }
-
     for(int i=1;i<N;++i){
         if(!vec[i]){
             vec[i]=true;
@@ -22,20 +21,13 @@ void dfs(int dep){
     }
     return;
 }
-bool cmp(int a,int b){ return a>b;}
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(0);
     cin>>N>>M;
     vec.assign(++N,false);
-    // for(int i=1;i<N;++i)
+
     dfs(0);
-    // sort(ans.begin(),ans.end());
-    // for(int i=0;i<ans.size();++i){
-    //     cout<<ans[i];
-    //     if((i+1)%M==0) cout<<'\n';
-    //     else cout<<' ';
-    // }
-    
+
     return 0;
 }
