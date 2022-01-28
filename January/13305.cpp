@@ -1,14 +1,16 @@
-#include <stdio.h>
+#include <iostream>
+
 int main(){
-    int N;scanf("%d",&N);
-    long long dist[N];
+    std::ios_base::sync_with_stdio(0x0); std::cin.tie(0x0);
+    int N;std::cin>>N;
+    int dist[N];
     long long minv=1000000001;
-    long long money=0;
+    int money=0;
     long long ans=0;
-    for(int i=0;i<N-1;++i) scanf("%lld",&dist[i]);
+    for(int i=0;i<N-1;++i) std::cin>>dist[i];
 
     for(int i=0;i<N-1;++i){
-        scanf("%lld",&money);
+        std::cin>>money;
         minv = minv < money ? minv : money;
         ans += minv * dist[i];
     }
