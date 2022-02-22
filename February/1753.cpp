@@ -12,7 +12,7 @@ void solve(){
     for(int i=1;i<=E;++i){
         int u,v,w;cin>>u>>v>>w;
         node[u].push_back({w,v});
-    
+    }
 
     d[ST]=0;
     pq.push({d[ST],ST});
@@ -28,7 +28,7 @@ void solve(){
     }
     for(int i=1;i<=V;++i){
         if(d[i] == INF) cout<<"INF\n";
-        else cout<<d[i]<<'\n';
+        else cout<<d[i]<<'\n'; 
     }
 }
 
