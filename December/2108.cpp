@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
-    ios::sync_with_stdio(false);
+    ios::sync_with_stdio(0);
     cin.tie(0);
     int N;cin>>N;
     int mid=0,range=0,mode=0,max=0,max2=0,tmp=0,tmp2=0;
@@ -24,7 +24,8 @@ int main(){
         }
     }
     sort(v.begin(),v.end());
-    cout<<round(sum/N)<<'\n';
+    if(round(sum/N) == 0) cout<<0<<'\n';
+    else cout<<round(sum/N)<<'\n';
     cout<<v[N/2]<<'\n';
     cout<<(max==max2? tmp2:tmp)<<'\n';
     cout<<v[N-1] - v[0]<<'\n';
