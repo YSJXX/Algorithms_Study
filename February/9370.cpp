@@ -2,7 +2,23 @@
 using namespace std;
 #define X first
 #define Y second
+priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
 
+vector<int> dijkstra(int st, vector<int> d, vector<vector<pair<int,int>>> node){
+    d[st]=0;
+    pq.push({d[st],st});
+    while(!pq.empty()){
+        pair<int,int> cur = pq.top();
+        pq.pop();
+        if(d[cur.Y] != cur.X) continue;
+        for(auto nxt : node[cur.Y]){
+            if(d[nxt.Y] <= d[cur.Y] + nxt.X) continue;
+            d[nxt.Y] = d[cur.Y] + nxt.X;
+            pq.push({d[nxt.Y],nxt.Y});
+        }
+    }
+    return d;
+}
 void solve(){
     int T;cin>>T;
     while(T--){
@@ -10,47 +26,36 @@ void solve(){
         int s,g,h;cin>>s>>g>>h;
         vector<vector<pair<int,int>>> node(n+1);
         vector<int> d(n+1,0x3f3f3f3f);
-        vector<int> pre(n+1);
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-        vector<int> list;
+        vector<int> d2(n+1,0x3f3f3f3f);
+        vector<int> ans;
+        int tmp=0;
         for(int i=0;i<m;++i){
             int a,b,c;cin>>a>>b>>c;
             node[a].push_back({c,b});
             node[b].push_back({c,a});
+            if((a == g && b == h) || (a == h && b == g))
+                tmp = c;
         }
-        d[s]=0;
-        pre[s]=0;
-        pq.push({d[s],s});
-        while(!pq.empty()){
-            pair<int,int> cur = pq.top();
-            pq.pop();
-            if(d[cur.Y] != cur.X) continue;
-            for(auto nxt : node[cur.Y]){
-                if(d[nxt.Y] <= d[cur.Y] + nxt.X) continue;
-                d[nxt.Y] = d[cur.Y] + nxt.X;
-                pre[nxt.Y] = cur.Y;
-                pq.push({d[nxt.Y],nxt.Y});
-            }
+        d = dijkstra(s,d,node);
+        int r1,r2; 
+        if(d[g] > d[h]) {
+            r1 = h;
+            r2 = g;
+        } else {
+            r1 = g;
+            r2 = h;
         }
+        d2 = dijkstra(r2, d2, node);
 
         for(int i=0;i<t;++i){
             int x;cin>>x;
-            list.push_back(x);
+            ans.push_back(x);
         }
-        sort(list.begin(),list.end());
-        for(int i=0;i<t;++i){
-            int idx = list[i];
-            bool g1=false,h1=false;
-            while(pre[idx]){
-                if(pre[idx] == g && !g1) g1=true;
-                else if(pre[idx] == h && !h1) h1=true;
-                if(g1 && h1) {
-                    cout<<list[i]<<'\n';
-                    break;
-                }
-                idx = pre[idx];
-            }
+        sort(ans.begin(),ans.end());
+        for(auto x : ans){
+            if(d[x] >= d[r1] + tmp + d2[x]) cout<<x<<'\n';
         }
+        
     }
 }
 
@@ -61,3 +66,4 @@ int main(){
     solve();    
     return 0;
 }
+//https://cocoon1787.tistory.com/437 참고 링크
