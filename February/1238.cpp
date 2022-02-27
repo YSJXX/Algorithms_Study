@@ -23,21 +23,24 @@ vector<int> dijkstra(vector<int> d, int st,vector<vector<pair<int,int>>> node){
 
 void solve(){
     cin>>N>>M>>X;
-    vector<vector<int>> d(N+1,vector<int>(N+1,0x3f3f3f3f));
+    vector<int> d(N+1,0x3f3f3f3f);
+    vector<int> d2(N+1,0x3f3f3f3f);
     vector<vector<pair<int,int>>> node(N+1);
+    vector<vector<pair<int,int>>> node2(N+1);
     int len=0;
     for(int i=0;i<M;++i){
         int a,b,c;cin>>a>>b>>c;
         node[a].push_back({c,b});
+        node2[b].push_back({c,a});
     }
 
-    d[X] = dijkstra(d[X],X,node);
-    for(int i=1;i<=N;++i){
-        if(i != X) d[i] = dijkstra(d[i],i,node);
-        int tmp = d[i][X] +  d[X][i];
-        if(len < tmp) len = tmp;
-    }
+    d = dijkstra(d,X,node);
+    d2 = dijkstra(d2,X,node2);
     
+    for(int i=1;i<=N;++i){
+        int tmp = d[i] + d2[i];
+        len = len > tmp ? len : tmp;
+    }
     cout<<len<<'\n';
 }
 
