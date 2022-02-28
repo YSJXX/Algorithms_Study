@@ -28,7 +28,6 @@ void solve(){
         int X = get<1>(cur);
         int Y = get<2>(cur);
         pq.pop();
-        if(d[X][Y] != cnt) continue;
         for(int xy=0;xy<4;++xy){
             int nx = X + dx[xy];
             int ny = Y + dy[xy];
