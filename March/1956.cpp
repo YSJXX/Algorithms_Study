@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define rep(i,a,b) for(int i = a; i < b; i++)
+
 void solve(){
     int V=0,E;cin>>V>>E;
     int d[V+1][V+1];
@@ -19,10 +19,8 @@ void solve(){
             for(int j=1;j<=V;++j){
                 d[i][j] = min(d[i][j], d[i][k]+d[k][j]);
             }
+            ans = min(ans,d[i][i]);
         }
-    }
-    for(int i=1;i<=V;++i){
-        ans = min(ans,d[i][i]);
     }
     if(ans == 0x3f3f3f3f) ans=-1;
     cout<<ans<<'\n';
