@@ -11,7 +11,7 @@ void solve(){
     int T;cin>>T;
     while(T--){
         int K,N;cin>>K>>N;
-        cout<<F(K,N)<'\n';
+        cout<<F(K,N)<<'\n';
     }
 }
 
