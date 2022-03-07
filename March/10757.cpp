@@ -13,16 +13,17 @@ void solve(){
     int tmp = 0;        // 올림수 1 저장
     while(i < Alen){
         int sum = 0;
-        if(i < Blen) sum = (B[Blen-i-1]-'0') + (A[Alen-i-1]-'0') + tmp;  
+        if(i < Blen) sum = (B[Blen-i-1]-'0') + (A[Alen-i-1]-'0') + tmp;  // B[Blen-i-1]-'0' : 문자열 맨 뒤 가져와서 int형으로 변경
         else sum = A[Alen-i-1]-'0' + tmp;
 
         if(sum >= 10){      // sum이 10 넘으면 tmp에 올림수 1 저장
-            ans.push_back(sum%10);
+            sum = sum%10;
             tmp = 1;
         }else{              // sum이 10이 안넘으면 올림수가 없으니 0 저장
-            ans.push_back(sum);
             tmp = 0;
         }
+        ans.push_back(sum);
+
         if(i == Alen-1 && tmp) ans.push_back(tmp);
         ++i;
 
