@@ -4,21 +4,19 @@ using namespace std;
 void solve(){
     int N,M;
     cin>>N>>M;
-    unordered_set<string> s;
-    vector<string> v;
-    for(int i=0;i<N;++i){
-        string x;
-        cin>>x;
-        s.insert(x);
-    }
-    for(int i=0;i<M;++i){
-        string x;
-        cin>>x;
-        if(s.find(x) != s.end()) v.push_back(x);
-    }
+    vector<string> v,ans;
+    v.resize(N);
+    for(int i=0;i<N;++i) cin>>v[i];
+
     sort(v.begin(),v.end());
-    cout<<v.size()<<'\n';
-    for(auto x : v) cout<<x<<'\n';
+    string x;
+    for(int i=0;i<M;++i){
+        cin>>x;
+        if(binary_search(v.begin(),v.end(),x)) ans.push_back(x);
+    }
+    sort(ans.begin(),ans.end());
+    cout<<ans.size()<<'\n';
+    for(int i=0;i<ans.size();++i) cout<<ans[i]<<'\n';
 }
 
 int main(){
