@@ -5,7 +5,7 @@ void solve(){
     int N,M;cin>>N>>M;
     
     vector<int> ans;
-    priority_queue<int> q;
+    priority_queue<int,vector<int>,greater<int>> q;
     vector<int> d(N+1,0);
     vector<int> node[32001];
     int A,B;
