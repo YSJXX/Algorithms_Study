@@ -14,7 +14,7 @@ void solve(){
         b = c;
     }
     ans1 = b;   // 최대 공약수
-    ans2 = (A*B)/ans1;
+    ans2 = (A*B)/ans1;  // 최소 공배수 ::  최대 공약수 * 최소 공배수 =  두 수의 곱
     cout<<ans1<<'\n';
     cout<<ans2<<'\n';
 }
