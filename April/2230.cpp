@@ -14,7 +14,7 @@ void solve(){
         if(arr[en]-arr[st] >= M){
             minx = min(minx,arr[en]-arr[st]);
             ++st;
-            en = st;
+            if(st > en) en = st;
         }else 
             ++en;
     }
