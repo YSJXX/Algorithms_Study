@@ -4,26 +4,16 @@ using namespace std;
 void solve(){
     int N;cin>>N;
     
-    vector<int> arr(N);
-    for(int i=0;i<N;++i) cin>>arr[i];
-
-    int X;cin>>X;
-
-    sort(arr.begin(),arr.end());
-    
-    int st=0,en=N-1,ans=0;
-    int tmp=en;
-    while(st < en){
-        while(arr[st]+arr[en] != X && st < en) --en;
-        if(st != en && arr[st]+arr[en] == X){
-            ++ans;
-        }else {
-            en = --tmp;
-        }
-        ++st;
+    vector<int> arr(2000001,0);
+    for(int i=0;i<N;++i){
+        int x;cin>>x;
+        ++arr[x];
     }
 
-    cout<<ans<<'\n';
+    int X;cin>>X;
+    int ans=0;
+    for(int i=0;i<X;++i) if(arr[i] != 0) ans += arr[X-i];
+    cout<<ans/2<<'\n';
 }
 
 int main(){
