@@ -1,3 +1,7 @@
 *_exe_*
 CTESTtemplate.cpp
 TimeCheck.cpp
+*.class
+.classpath
+.project
+.settings
